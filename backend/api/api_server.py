@@ -37,7 +37,15 @@ app = FastAPI(
 # CORS middleware for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3001", "http://127.0.0.1:3001"],  # React dev server
+    allow_origins=[
+        "http://localhost:3000", 
+        "http://127.0.0.1:3000", 
+        "http://localhost:3001", 
+        "http://127.0.0.1:3001",
+        "https://*.vercel.app",  # Vercel deployment
+        "https://*.netlify.app", # Netlify deployment (optional)
+        "https://smart-doc-checker.vercel.app"  # Your custom domain
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -416,18 +424,21 @@ async def list_uploaded_files():
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    
+    port = int(os.environ.get("PORT", 8000))
     
     print("🚀 Starting Smart Doc Checker API Server")
     print("=" * 50)
-    print("API Documentation: http://localhost:8000/docs")
-    print("API Root: http://localhost:8000/")
-    print("Health Check: http://localhost:8000/health")
+    print(f"Port: {port}")
+    print("API Documentation: /docs")
+    print("Health Check: /health")
     print("=" * 50)
     
     uvicorn.run(
         "api_server:app",
         host="0.0.0.0",
-        port=8000,
-        reload=True,
+        port=port,
+        reload=False,  # Disable reload in production
         log_level="info"
     )
