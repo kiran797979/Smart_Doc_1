@@ -16,12 +16,6 @@ jobs:
     name: Backend Tests
     runs-on: ubuntu-latest
     
-    services:
-      # Optional: Add PostgreSQL or other services if needed
-      sqlite:
-        image: alpine:latest
-        options: --health-cmd "echo 'SQLite ready'" --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -68,7 +62,7 @@ jobs:
       continue-on-error: true
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         file: ./backend/coverage.xml
         flags: backend
@@ -108,19 +102,35 @@ jobs:
       run: |
         cd frontend
         npm run build
+      continue-on-error: false
 
     - name: Check build size
       run: |
         cd frontend
-        ls -la build/static/js/
-        ls -la build/static/css/
+        if [ -d "build" ]; then
+          ls -la build/
+          if [ -d "build/static/js" ]; then ls -la build/static/js/; fi
+          if [ -d "build/static/css" ]; then ls -la build/static/css/; fi
+        else
+          echo "Build directory not found"
+        fi
+      continue-on-error: true
 
-    - name: Upload frontend build artifacts
-      uses: actions/upload-artifact@v3
+    - name: Upload frontend build
+      uses: actions/upload-artifact@v4
       with:
         name: frontend-build
         path: frontend/build/
-        retention-days: 7
+        retention-days: 30
+      if: success() && hashFiles('frontend/build/**') != ''
+
+    - name: Upload frontend test coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-coverage
+        path: frontend/coverage/
+        retention-days: 30
+      if: success() && hashFiles('frontend/coverage/**') != ''
 
   # Integration tests
   integration-test:
