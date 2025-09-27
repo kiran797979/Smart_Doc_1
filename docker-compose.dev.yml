@@ -1,0 +1,58 @@
+# Docker Compose for development with additional services
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smart-doc-checker-backend-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/uploads:/app/uploads
+      - ./backend/database:/app/database
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - DEVELOPMENT=true
+    command: ["python", "-m", "uvicorn", "api.api_server:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    networks:
+      - smart-doc-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: smart-doc-checker-frontend-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - smart-doc-network
+
+  # Database browser for development
+  db-browser:
+    image: coleifer/sqlite-web:latest
+    container_name: smart-doc-checker-db-browser
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/database:/data
+    command: ["sqlite_web", "/data/smart_doc_checker.db", "--host", "0.0.0.0", "--port", "8080"]
+    depends_on:
+      - backend
+    networks:
+      - smart-doc-network
+
+networks:
+  smart-doc-network:
+    driver: bridge

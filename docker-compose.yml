@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smart-doc-checker-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/database:/app/database
+      - ./backend/logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - DATABASE_PATH=/app/database/smart_doc_checker.db
+      - UPLOAD_DIRECTORY=/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - smart-doc-network
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: smart-doc-checker-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - smart-doc-network
+
+  # Optional: Database viewer (for development)
+  db-browser:
+    image: coleifer/sqlite-web:latest
+    container_name: smart-doc-checker-db-browser
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/database:/data
+    command: ["sqlite_web", "/data/smart_doc_checker.db", "--host", "0.0.0.0", "--port", "8080"]
+    depends_on:
+      - backend
+    profiles:
+      - dev
+    networks:
+      - smart-doc-network
+
+networks:
+  smart-doc-network:
+    driver: bridge
+
+volumes:
+  # Persistent volumes for data
+  uploads:
+    driver: local
+  database:
+    driver: local
+  logs:
+    driver: local

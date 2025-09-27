@@ -1,0 +1,21 @@
+"""
+Test requirements for the Smart Doc Checker backend
+"""
+
+# Testing framework
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# FastAPI testing
+httpx>=0.24.0
+requests>=2.31.0
+
+# For mocking and test utilities
+pytest-mock>=3.11.0
+
+# For async testing
+asyncio>=3.4.3
+
+# Development dependencies that might be needed for testing
+python-dotenv>=1.0.0
