@@ -13,8 +13,8 @@ spacy==3.7.2
 transformers==4.35.2
 torch==2.1.1
 
-# Database
-sqlite3  # Built into Python
+# Database (sqlite3 is built into Python)
+# No additional sqlite dependency needed
 
 # Additional utilities
 python-dateutil==2.8.2
