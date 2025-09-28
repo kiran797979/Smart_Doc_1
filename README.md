@@ -9,11 +9,12 @@
 > **Advanced Document Contradiction Detection System**  
 > Automatically detect contradictions and inconsistencies across multiple documents using NLP and AI-powered analysis.
 
-## 🎉 Status: PRODUCTION-READY ✅ | BACKEND LIVE 🌐
+## 🎉 Status: FULLY DEPLOYED ✅ | COMPLETE FULL-STACK APPLICATION LIVE! 🌐
 
-**✅ Backend Deployed:** https://smart-doc-1-3.onrender.com/  
-**⏳ Frontend:** Deploying to Vercel (smart_doc11)  
-**✅ All requirements delivered successfully + Extended with testing & deployment!**
+**✅ Frontend Live:** https://smart-doc-checker-kirans-projects-abcb66a1.vercel.app  
+**✅ Backend Live:** https://smart-doc-1-3.onrender.com/  
+**✅ Complete full-stack application successfully deployed to production!**  
+**🌟 Access the live Smart Doc Checker at the frontend URL above!**
 
 ### Core Features
 - ✅ **Backend:** Python FastAPI with full REST API
