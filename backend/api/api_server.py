@@ -44,7 +44,11 @@ app.add_middleware(
         "http://127.0.0.1:3001",
         "https://*.vercel.app",  # Vercel deployment
         "https://*.netlify.app", # Netlify deployment (optional)
-        "https://smart-doc-checker.vercel.app"  # Your custom domain
+        "https://smart-doc-checker.vercel.app",  # Your custom domain
+        "https://frontend-amber-alpha-10.vercel.app",  # Current frontend URL
+        "https://frontend-22at20ato-kirans-projects-abcb66a1.vercel.app",  # Alternative frontend URL
+        "https://smart-doc-checker-kirans-projects-abcb66a1.vercel.app",  # Previous URLs
+        "https://smart-doc-checker-lmxrywr5m-kirans-projects-abcb66a1.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
