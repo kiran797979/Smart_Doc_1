@@ -11,7 +11,7 @@
 
 ## 🎉 Status: FULLY DEPLOYED ✅ | COMPLETE FULL-STACK APPLICATION LIVE! 🌐
 
-**✅ Frontend Live:** https://smart-doc-checker-lmxrywr5m-kirans-projects-abcb66a1.vercel.app  
+**✅ Frontend Live:** https://frontend-amber-alpha-10.vercel.app  
 **✅ Backend Live:** https://smart-doc-1-3.onrender.com/  
 **✅ Complete full-stack application successfully deployed to production!**  
 **🌟 Access the live Smart Doc Checker at the frontend URL above!**

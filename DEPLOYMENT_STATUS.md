@@ -2,7 +2,7 @@
 
 ## 🎉 **DEPLOYMENT COMPLETE - FULL-STACK APPLICATION LIVE!** ✅
 
-**🌟 Complete Application**: https://smart-doc-checker-kirans-projects-abcb66a1.vercel.app  
+**🌟 Complete Application**: https://frontend-amber-alpha-10.vercel.app  
 **⚡ Backend API**: https://smart-doc-1-3.onrender.com/
 
 **Status**: All components successfully deployed to production!
@@ -27,10 +27,11 @@
 - ✅ Automatic health monitoring
 
 ### ✅ **Frontend - LIVE**
-- **URL**: https://smart-doc-checker-kirans-projects-abcb66a1.vercel.app
+- **Main URL**: https://frontend-amber-alpha-10.vercel.app
+- **Direct URL**: https://frontend-22at20ato-kirans-projects-abcb66a1.vercel.app
 - **Platform**: Vercel.com
-- **Project Name**: smart-doc-checker
-- **Status**: ✅ Live and operational
+- **Project Name**: frontend
+- **Status**: ✅ Live and operational (Root Directory Issue RESOLVED)
 
 **Frontend Configuration:**
 - ✅ React + TypeScript application
