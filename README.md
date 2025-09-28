@@ -9,8 +9,10 @@
 > **Advanced Document Contradiction Detection System**  
 > Automatically detect contradictions and inconsistencies across multiple documents using NLP and AI-powered analysis.
 
-## 🎉 Status: PRODUCTION-READY ✅
+## 🎉 Status: PRODUCTION-READY ✅ | BACKEND LIVE 🌐
 
+**✅ Backend Deployed:** https://smart-doc-1-3.onrender.com/  
+**⏳ Frontend:** Deploying to Vercel (smart_doc11)  
 **✅ All requirements delivered successfully + Extended with testing & deployment!**
 
 ### Core Features
